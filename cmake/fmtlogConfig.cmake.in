@@ -1,0 +1,14 @@
+@PACKAGE_INIT@
+
+if(TARGET fmtlog::::fmtlog-static)
+  return()
+endif()
+
+find_package(fmt CONFIG REQUIRED)
+find_package(Threads REQUIRED)
+
+include(${CMAKE_CURRENT_LIST_DIR}/fmtlogTargets.cmake)
+
+if(NOT TARGET fmtlog::fmtlog)
+  add_library(fmtlog::fmtlog ALIAS fmtlog::fmtlog-static)
+endif()
